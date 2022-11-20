@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <form action="{% url 'create_file' 'export_cr' %}" method="get">
+        <button type="submit" class="btn btn-outline-success btn-sm">Создать</button>
+    </form>
+</div>
+<div class="container position-relative">
+    <div class="row justify-content-center p-3">
+        <div class="col-auto position-absolute start-0">
+            <div class="container">
+                {% for value in list %}
+                {% if value.type == 'File' %}
+                <ul class="list-group list-group-horizontal-md">
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.id}}</li>
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.name}}</li>
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.type}}</li>
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.size}} B</li>
+                    <li class="list-group-item" style="margin-top: 5px;">
+                        <form action="{% url 'delete_file' 'export_del' value.id value.name %}" method="get">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Удалить</button>
+                        </form>
+                    </li>
+                    <li class="list-group-item" style="margin-top: 5px;">
+                        <form action="{% url 'download_file' 'export_down' value.id value.name %}" method="get">
+                            <button type="submit" id="{{value.name}}" class="btn btn-primary btn-sm">Скачать</button>
+                        </form>
+                    </li>
+                </ul>
+                <script type="application/javascript">
+                    document.getElementById("{{value.name}}").onclick = function () {Telegram.WebApp.sendData('{{value.id}}|{{value.name}}');};
+                </script>
+                {% else %}
+                <ul class="list-group list-group-horizontal-md">
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.id}}</li>
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.name}}</li>
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.type}}</li>
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.size}} B</li>
+                    <li class="list-group-item" style="margin-top: 5px;">
+                        <form action="{% url 'delete_package' 'export_del' value.id value.name %}" method="get">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Удалить</button>
+                        </form>
+                    </li>
+                </ul>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

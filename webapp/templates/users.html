@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container position-relative">
+    <div class="row justify-content-center p-3">
+        <div class="col-auto position-absolute start-0">
+            <div class="container">
+                {% for value in list %}
+                <ul class="list-group list-group-horizontal-md">
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.id}}</li>
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.name}}</li>
+                    <li class="list-group-item" style="margin-top: 5px;">{{value.email}}</li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
