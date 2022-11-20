@@ -2,8 +2,8 @@ import requests
 import urllib3
 from webapp.shablon import Base
 
-TOKEN = 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y'
-PROS = '6377865f5f620ebfce9a07ce'
+TOKEN = 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy'
+PROS = '6379fb4b5f620ebfce9a63e4'
 USER_NAME = 'apikey'
 
 

@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['41fe-37-145-228-41.eu.ngrok.io',
                  'e655-37-145-228-41.eu.ngrok.io',
                  'f601-37-145-228-41.eu.ngrok.io',
+                 '4cde-85-249-171-228.eu.ngrok.io',
+                 '3273-188-170-172-19.eu.ngrok.io',
                  '127.0.0.1']
 
 
@@ -53,7 +55,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://f601-37-145-228-41.eu.ngrok.io']
+CSRF_TRUSTED_ORIGINS = ['https://f601-37-145-228-41.eu.ngrok.io',
+                        'https://3273-188-170-172-19.eu.ngrok.io']
 
 ROOT_URLCONF = 'fastbbot_webapp.urls'
 

@@ -1,8 +1,8 @@
 import requests
 import urllib3
 
-TOKEN = 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y'
-PROS = '6377865f5f620ebfce9a07ce'
+TOKEN = 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy'
+PROS = '6379fb4b5f620ebfce9a63e4'
 USER_NAME = 'apikey'
 
 
@@ -57,7 +57,7 @@ class Exports(Base):
         return (list_folder.get('files'))
 
     def _get_list_files_folder(self, name: str = 'root'):
-        tem = Exports('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce',
+        tem = Exports('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4',
                         'https://fastreport.cloud')
         headers, sub_id = self._config()
         folder = self._get_root_folder() if name == 'root' else self.get_folder(name)
@@ -167,5 +167,3 @@ class Exports(Base):
         with open(f'{file_name}', 'wb') as f:
             f.write(wer.content)
 
-# ex = Exports('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
-# print(ex._get_root_folder())

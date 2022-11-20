@@ -1,8 +1,8 @@
 import requests
 import urllib3
 
-TOKEN = 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y'
-PROS = '6377865f5f620ebfce9a07ce'
+TOKEN = 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy'
+PROS = '6379fb4b5f620ebfce9a63e4'
 USER_NAME = 'apikey'
 
 
@@ -57,7 +57,7 @@ class Templates(Base):
         return (list_folder.get('files'))
 
     def _get_list_files_folder(self, name: str = 'root'):
-        tem = Templates('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce',
+        tem = Templates('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4',
                         'https://fastreport.cloud')
         headers, sub_id = self._config()
         folder = self._get_root_folder() if name == 'root' else self.get_folder(name)
@@ -132,15 +132,16 @@ class Templates(Base):
     def _get_files_list_rep(self, folder_name: str = 'root'):
         headers, sub_id = self._config()
         folder = self._get_root_reports_dir() if folder_name == 'root' else self.get_folder(folder_name)
-        response = requests.get(f'{self._host}/api/rp/v1/Reports/Folder/6377865f5f620ebfce9a07cc/ListFiles?take=100',
+        response = requests.get(f'{self._host}/api/rp/v1/Templates/Folder/6377865f5f620ebfce9a07cc/ListFiles?take=100',
                                 headers=headers)
         return response.json()
 
     def _get_file_rep(self, name: str, folder_name: str = 'root'):
         headers, sub_id = self._config()
         files = self._get_files_list_rep(folder_name=folder_name)
+        print(files)
         file = [i for i in files.get('files') if i.get("name") == f'{name}.fpx'][0]
-        response = requests.get(f'{self._host}/api/rp/v1/Reports/File/{file.get("id")}', headers=headers)
+        response = requests.get(f'{self._host}/api/rp/v1/Templates/File/{file.get("id")}', headers=headers)
         return response.json()
 
     def export_file(self, file_name: str, format: str, folder_name: str = 'root', export_name: str = None):
@@ -151,15 +152,14 @@ class Templates(Base):
             "format": format
         }
         fileq = self._get_file_rep(file_name, folder_name=folder_name)
-        print('sdrfghjkl;kjghffysdtfyguhijokpojilhukgjhfxchvhbjnkmlkjbhg')
         file = requests.post(f'{self._host}/api/rp/v1/Templates/File/{fileq.get("templateId")}/Export', headers=headers,
                              json=json)
         return file.json()
 
     def download_file(self, file_name: str):
         headers, sub_id = self._config()
-        root_id = requests.get(f'{self._host}/api/rp/v1/Exports/Root', headers=headers).json().get('id')
-        files = requests.get(f'{self._host}/api/rp/v1/Exports/Folder/{root_id}/ListFiles?take=100', headers=headers).json()
+        root_id = requests.get(f'{self._host}/api/rp/v1/Templates/Root', headers=headers).json().get('id')
+        files = requests.get(f'{self._host}/api/rp/v1/Templates/Folder/{root_id}/ListFiles?take=100', headers=headers).json()
         file = [i for i in files.get('files') if i.get('name') == file_name][0]
         response = requests.get(f'{self._host}/download/e/{file.get("id")}', headers=headers)
         wer = requests.get(response.url, headers=headers)

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
+<div class="container-btn" style="margin-left: 104px;">
     <form action="{% url 'create_file' 'shablon_cr' %}" method="get">
         <button type="submit" class="btn btn-outline-success btn-lg">Создать</button>
     </form>
@@ -11,7 +11,12 @@
             <div class="container">
                 {% for value in list %}
                 {% if value.type == 'File' %}
-                <ul class="list-group list-group-horizontal-md">
+                <ul class="list-group list-group-horizontal-md" style="
+                display: flex;
+                flex-direction: column;
+                padding-left: 0;
+                margin-bottom: 29px;
+                border-radius: 0.25rem;">
                     <li class="list-group-item" style="margin-top: 5px;">{{value.id}}</li>
                     <li class="list-group-item" style="margin-top: 5px;">{{value.name}}</li>
                     <li class="list-group-item" style="margin-top: 5px;">{{value.type}}</li>
@@ -37,6 +42,10 @@
                                     <button type="submit" id="{{value.id}}" class="btn btn-primary btn-sm">Экспорт
                                     </button>
                                 </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary btn-sm" onclick="return foo();">Подтвердить
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </li>
@@ -45,7 +54,9 @@
                     document.getElementById("{{value.name}}").onclick = function () {Telegram.WebApp.sendData('{{value.id}}|{{value.name}}');};
                 </script>
                 <script>
-                    document.getElementById("{{value.id}}").onclick = function () {Telegram.WebApp.sendData('{{value.name}}|'+'exp');};
+                    function foo () {
+                        Telegram.WebApp.sendData('{{value.name}}|'+'exp');
+                    }
                 </script>
                 {% else %}
                 <ul class="list-group list-group-horizontal-md">

@@ -8,8 +8,8 @@ from fastreport_cloud_sdk.rest import ApiException
 from pprint import pprint
 
 
-TOKEN='yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y'
-PROS='6377865f5f620ebfce9a07ce'
+TOKEN='kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy'
+PROS='6379fb4b5f620ebfce9a63e4'
 
 
 def _config_api(token: str) -> fastreport_cloud_sdk.configuration.Configuration:
@@ -66,11 +66,3 @@ def delete_api_key(key):
 
 
     print(response.status_code)
-
-# print(get_api_keys())
-date_time_str = '20/11/22'
-
-date = datetime.datetime.strptime(date_time_str, '%d/%m/%y')
-# print(date)
-# create_api_key('test', date)
-delete_api_key('4ndymm59qkqr34fb5eiupc8gxp9g395i7toi6zu58w4p3bdnjxdo')

@@ -5,7 +5,12 @@
         <div class="col-auto position-absolute start-0">
             <div class="container">
                 {% for value in list %}
-                <ul class="list-group list-group-horizontal-md">
+                <ul class="list-group list-group-horizontal-md" style="
+                display: flex;
+                flex-direction: column;
+                padding-left: 0;
+                margin-bottom: 29px;
+                border-radius: 0.25rem;">
                     <li class="list-group-item" style="margin-top: 5px;">{{value.id}}</li>
                     <li class="list-group-item" style="margin-top: 5px;">{{value.name}}</li>
                 </ul>

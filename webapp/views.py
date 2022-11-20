@@ -40,7 +40,7 @@ def reports(request):
 
 def data(request):
     form = Export()
-    dt = DataSources('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
+    dt = DataSources('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4', 'https://fastreport.cloud')
     a = dt.get_all_data_sources()['dataSources']
     data = {"header": 'Источники данных',
             "list": a,
@@ -64,7 +64,7 @@ def users(request):
 
 
 def exports(request):
-    ex = Exports('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
+    ex = Exports('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4', 'https://fastreport.cloud')
     a = ex._get_list_files_folder()
     data = {"header": 'Экспорты',
             "list": a}
@@ -96,20 +96,18 @@ def _download_file(request, down, id, name):
 
 
 def _export_file(request, down, id, name):
+    print('dsfdgffgdfggfh')
     if down == 'shablon_exp':
         if request.method == 'POST':
             form = Export(request.POST)
             if form.is_valid():
-                print('148918156156156')
-                a = form.cleaned_data.get('format')
                 name = name.split('.frx')[0]
-                print(a)
-                print(name, '1589521')
+                print(name)
                 tem = Templates(USER_NAME, TOKEN, PROS, 'https://fastreport.cloud')
                 tem.prepare_file(file_name=name, file_prepare_name=name)
-                tem.export_file(file_name=name, format=a)
+                tem.export_file(file_name=name, format='pdf')
             else:
-                print('еблан?')
+                print('Че ты ввел?')
         return redirect('temp')
     if down == 'doc_exp':
         return redirect('docs')
@@ -124,7 +122,7 @@ def _export_file(request, down, id, name):
 def _delete_file(request, down, id, name):
     if down == 'shablon_del':
         name = name.split('.')[0]
-        tem = Templates('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
+        tem = Templates('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4', 'https://fastreport.cloud')
         tem.delete_file(name)
         return redirect('temp')
     if down == 'doc_del':
@@ -137,11 +135,11 @@ def _delete_file(request, down, id, name):
         delete_api_key(name)
         return redirect('api-keys')
     if down == 'export_del':
-        ex = Exports('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
+        ex = Exports('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4', 'https://fastreport.cloud')
         ex.delete_file(name)
         return redirect('exports')
     if down == 'data_del':
-        dt = DataSources('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
+        dt = DataSources('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4', 'https://fastreport.cloud')
         dt.delete_ds(name)
         return redirect('data')
 
@@ -152,11 +150,11 @@ def _delete_package(request, down, id, name):
         rep.delite_package(id)
         return redirect('reports')
     if down == 'shablon_del':
-        tem = Templates('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
+        tem = Templates('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4', 'https://fastreport.cloud')
         tem.delete_folder(name)
         return redirect('temp')
     if down == 'export_del':
-        ex = Exports('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
+        ex = Exports('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4', 'https://fastreport.cloud')
         ex.delete_folder(name)
         return redirect('exports')
     if down == 'data_del':
@@ -165,7 +163,7 @@ def _delete_package(request, down, id, name):
 
 def _create_file(request, down):
     if down == 'shablon_cr':
-        tem = Templates('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
+        tem = Templates('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4', 'https://fastreport.cloud')
         tem.create_file()
         return redirect('temp')
     if down == 'doc_cr':
@@ -176,14 +174,15 @@ def _create_file(request, down):
         return redirect('reports')
     if down == 'api_cr':
         letters = string.ascii_lowercase
-        rand_string = ''.join(random.choice(letters) for i in range(10))
+        rand_string = ''.join(random.choice(letters) for i in range(100))
         create_api_key(description=rand_string)
+        print(create_api_key(description=rand_string))
         return redirect('api-keys')
     if down == 'export_cr':
-        ex = Exports('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
+        ex = Exports('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4', 'https://fastreport.cloud')
         ex.create_folder()
         return redirect('exports')
     if down == 'data_cr':
-        dt = DataSources('apikey', 'yuptozbh36s5uj1qkojexo5w91snjjmcw3sya8s84zy8t8yjow9y', '6377865f5f620ebfce9a07ce', 'https://fastreport.cloud')
+        dt = DataSources('apikey', 'kfnsesp38bup97mijxauiwpdzubibh9ek1u7aq6f3u6w14s6sbgy', '6379fb4b5f620ebfce9a63e4', 'https://fastreport.cloud')
         dt.create_data_source()
         return redirect('data')
