@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-$4c=%=6_x-=8i!h9aa4_a7u$vih25pf4g$fck!(y)wxz^vgbu0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['41fe-37-145-228-41.eu.ngrok.io',
+                 'e655-37-145-228-41.eu.ngrok.io',
+                 'f601-37-145-228-41.eu.ngrok.io',
+                 '127.0.0.1']
 
 
 # Application definition
@@ -49,6 +52,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://f601-37-145-228-41.eu.ngrok.io']
 
 ROOT_URLCONF = 'fastbbot_webapp.urls'
 
